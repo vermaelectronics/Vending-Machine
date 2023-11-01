@@ -53,7 +53,6 @@ module vending_machine_044(clk, rst, in, out, change, com_anode, segment, dport)
                 change <= 0;
               end
             
-            
             s1: if(in == 0) // 5 Rs State
               begin
                 n_state <= s0;
@@ -72,7 +71,6 @@ module vending_machine_044(clk, rst, in, out, change, com_anode, segment, dport)
                 out <= 1;
                 change <= 0;
               end
-            
             
             s2: if(in == 0) // 10 Rs State
               begin
@@ -99,7 +97,6 @@ module vending_machine_044(clk, rst, in, out, change, com_anode, segment, dport)
           seven_segment_display   SSD (change, segment, com_anode, dport);
          
 endmodule      
-
 
 module seven_segment_display (change_1, segment_1, com_anode_1, dport_1);
             
@@ -143,5 +140,6 @@ module userclock (input  clk1,output  u_clk1);
                 assign u_clk1 = clk_out;
   
 endmodule
+  
   
            
