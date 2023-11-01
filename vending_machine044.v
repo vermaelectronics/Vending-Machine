@@ -1,16 +1,15 @@
-module vending_machine_044(clk, rst, in, out, change,
-                   com_anode, 
-                   segment, 
-                   dport);
+// Code your design here
+module vending_machine_044(clk, rst, in, out, change, com_anode, segment, dport);
 
-  input           clk;
-  input           rst;
-  input    [1:0]  in;               // 01 = 5 Rs, 10 = 10 Rs
-  output reg          out;
-  output reg   [1:0]  change;  // Change showing in FPGA
- output wire  [7:0]  com_anode;  // For Common Anode Selection on FPGA
- output wire  [6:0]  segment;
- output wire         dport;
+  input clk;
+  input rst;
+  input [1:0] in; // 01 = 5 Rs, 10 = 10 Rs
+  output reg out;
+  output reg [1:0] change; // Change showing in FPGA
+  output wire [7:0] com_anode; // For Common Anode Selection on FPGA
+  output wire [6:0] segment;
+  output wire dport;
+  
  // Defining state
   parameter s0 = 2'b00; // reset
   parameter s1 = 2'b01; // 5 Rs state
@@ -18,11 +17,7 @@ module vending_machine_044(clk, rst, in, out, change,
    
   wire u_clk;
   
-  
-  
-  userclock               US(clk, u_clk);
- 
-   
+  userclock US(clk, u_clk);
   
   reg [1:0] c_state, n_state;
   
@@ -38,8 +33,7 @@ module vending_machine_044(clk, rst, in, out, change,
           c_state <= n_state;
           
           case(c_state)
-            
-            
+           
             s0: if(in == 0) // 	Reset State
               begin
                 n_state <= s0;
@@ -103,12 +97,11 @@ module vending_machine_044(clk, rst, in, out, change,
          end 
           
           seven_segment_display   SSD (change, segment, com_anode, dport);
-      
          
-   endmodule
-          
+endmodule      
 
-         module seven_segment_display (change_1, segment_1, com_anode_1, dport_1);
+
+module seven_segment_display (change_1, segment_1, com_anode_1, dport_1);
             
             input  wire [1:0] change_1;
             output reg  [6:0] segment_1;
@@ -127,11 +120,10 @@ module vending_machine_044(clk, rst, in, out, change,
                              default segment_1 = 7'b0000001;
                            endcase
                          end
-            
-          endmodule
+endmodule
           
-              
-   module userclock (input  clk1,output  u_clk1);
+
+module userclock (input  clk1,output  u_clk1);
                 reg clk_out = 0;
                 reg [27:0] counter = 0;
                 
@@ -149,7 +141,7 @@ module vending_machine_044(clk, rst, in, out, change,
                       end
                 
                 assign u_clk1 = clk_out;
-              
-         endmodule
+  
+endmodule
   
            
