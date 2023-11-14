@@ -1,6 +1,5 @@
 // Code your design here
 module vending_machine_044(clk, rst, in, out, change, com_anode, segment, dport);
-
   input clk;
   input rst;
   input [1:0] in; // 01 = 5 Rs, 10 = 10 Rs
@@ -94,8 +93,7 @@ module vending_machine_044(clk, rst, in, out, change, com_anode, segment, dport)
          end
          end 
           
-          seven_segment_display   SSD (change, segment, com_anode, dport);
-         
+          seven_segment_display   SSD (change, segment, com_anode, dport);       
 endmodule      
 
 module seven_segment_display (change_1, segment_1, com_anode_1, dport_1);
@@ -119,7 +117,6 @@ module seven_segment_display (change_1, segment_1, com_anode_1, dport_1);
                          end
 endmodule
           
-
 module userclock (input  clk1,output  u_clk1);
                 reg clk_out = 0;
                 reg [27:0] counter = 0;
@@ -140,6 +137,3 @@ module userclock (input  clk1,output  u_clk1);
                 assign u_clk1 = clk_out;
   
 endmodule
-  
-  
-           
